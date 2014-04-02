@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Selecting a latitude and longitude value for a form</title>
+
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
+
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+<style>
+.map-overlay {
+    position:absolute;
+    top:5px;
+    right:5px;
+    padding:5px;
+    background:#fff;
+    font-size:11px;
+}
+.map-overlay input {
+    font:inherit;
+}
+</style>
+<div id='map'></div>
+<div class='map-overlay'>
+    <label for='latitude'>latitude</label><br />
+    <input type='text' size='5' id='latitude' /><br />
+    <label for='longitude'>longitude</label><br />
+    <input type='text' size='5' id='longitude' />
+</div>
+<script>
+var map = L.mapbox.map('map', 'examples.map-9ijuk24y')
+    .setView([0, 0], 2);
+
+// get the form inputs we want to update
+var latitude = document.getElementById('latitude');
+var longitude = document.getElementById('longitude');
+
+var marker = L.marker([0, 0], {
+    draggable: true
+}).addTo(map);
+
+// every time the marker is dragged, update the form
+marker.on('dragend', ondragend);
+
+// set the initial values in the form
+ondragend();
+
+function ondragend() {
+    var ll = marker.getLatLng();
+    latitude.value = ll.lat;
+    longitude.value = ll.lng;
+}
+</script>
+</body>
+</html>
