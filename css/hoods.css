@@ -1,0 +1,25 @@
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+#forecasts h2 { 
+  font-size: 14px;
+  text-transform:uppercase;
+  margin-top: 45px;
+  }
+
+#forecasts h3 { 
+  font-size: 12px;
+  text-transform:uppercase;
+  }
+
+#forecasts h3.time { 
+  text-transform:lowercase;
+  }  
+
+
+#forecasts img, #forecasts h3 { 
+  display: none; }
+  
+#forecasts .forecast-0 h3, #forecasts .forecast-0 img { 
+  display: inline; }
